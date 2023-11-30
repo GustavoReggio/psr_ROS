@@ -1,0 +1,7 @@
+<node pkg="parte11_ex3" type="circular_frame.py" name="" output="screen">
+        <remap from='radius' to='' />
+        <remap from='velocity' to='' />
+        <param name="distanc" type="double" value="1.0" />
+        
+    </node>
+    

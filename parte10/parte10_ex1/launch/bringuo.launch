@@ -1,0 +1,11 @@
+<launch>
+    <node pkg="rosbag" type="play" name="play_node" output="screen" 
+    args = '/home/gustavo/bagfiles/pr2_mit_demo_pari.bag -l'>
+    </node>
+
+
+    <node pkg="rviz" type="rviz" name="rviz_node" output="screen" 
+    args = '-d $(find parte10_ex1)/config/config.rviz'>
+    </node>
+
+</launch>
