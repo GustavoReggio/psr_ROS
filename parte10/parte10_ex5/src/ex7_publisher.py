@@ -18,62 +18,84 @@ def main():
     rospy.init_node('publisher', anonymous=True)
     publisher = rospy.Publisher('drwaings', Marker, queue_size=10)
     
-    marker = Marker()
+    ## Sphere ##
+    marker_sphere = Marker()
 
-    marker.header.frame_id = "world"
-    marker.header.stamp = rospy.Time.now()
+    marker_sphere.header.frame_id = "world"
+    marker_sphere.header.stamp = rospy.Time.now()
 
-    marker.ns = "my_namespace"
-    marker.id = 0
+    marker_sphere.ns = "sphere"
+    marker_sphere.id = 0
 
-    marker.type = Marker.SPHERE
-    marker.action = Marker.ADD
+    marker_sphere.type = Marker.SPHERE
+    marker_sphere.action = Marker.ADD
 
-    marker.pose.position.x = 0
-    marker.pose.position.y = 0
-    marker.pose.position.z = 0
-    marker.pose.orientation.x = 0.0
-    marker.pose.orientation.y = 0.0
-    marker.pose.orientation.z = 0.0
-    marker.pose.orientation.w = 1.0
+    marker_sphere.pose.position.x = 0
+    marker_sphere.pose.position.y = 0
+    marker_sphere.pose.position.z = 0
+    marker_sphere.pose.orientation.x = 0.0
+    marker_sphere.pose.orientation.y = 0.0
+    marker_sphere.pose.orientation.z = 0.0
+    marker_sphere.pose.orientation.w = 1.0
 
-    marker.scale.x = 1
-    marker.scale.y = 1
-    marker.scale.z = 1
+    marker_sphere.scale.x = 0.3
+    marker_sphere.scale.y = 0.3
+    marker_sphere.scale.z = 0.3
 
-    marker.color.a = 0.3
-    marker.color.r = 0.0
-    marker.color.g = 1.0
-    marker.color.b = 0.0
+    marker_sphere.color.a = 1.0
+    marker_sphere.color.r = 1.0
+    marker_sphere.color.g = 0.0
+    marker_sphere.color.b = 0.0
 
-    
+    ## Cube ##
+
+    marker_cube = Marker(ns = "Cube", id = 0 , type = Marker.CUBE, action = Marker.ADD )
+
+    marker_cube.header.frame_id = "world"
+    marker_cube.header.stamp = rospy.Time.now()
+
+    marker_cube.pose.position.x = 0
+    marker_cube.pose.position.y = 0
+    marker_cube.pose.position.z = 0
+    marker_cube.pose.orientation.x = 0.0
+    marker_cube.pose.orientation.y = 0.0
+    marker_cube.pose.orientation.z = 0.0
+    marker_cube.pose.orientation.w = 1.0
+
+    marker_cube.scale.x = 1
+    marker_cube.scale.y = 1
+    marker_cube.scale.z = 1
+
+    marker_cube.color.a = 0.3
+    marker_cube.color.r = 0.0
+    marker_cube.color.g = 1.0
+    marker_cube.color.b = 0.0
     
     rate = rospy.Rate(50)
 
-    scale = 0.1
+    diameter = 0.1
     increment = 0.01
 
     while not rospy.is_shutdown():
         
-        marker.header.stamp = rospy.Time.now()
-        scale =+ increment
-        marker.scale.x = scale
-        marker.scale.y = scale
-        marker.scale.z = scale
+        marker_sphere.header.stamp = rospy.Time.now()
+        diameter += increment
+        marker_sphere.scale.x = diameter
+        marker_sphere.scale.y = diameter
+        marker_sphere.scale.z = diameter
 
-        if scale > 1:
+        if diameter > 1:
             increment = -0.01
             print("decreasing")
-        elif scale < 0.1:
+        elif diameter < 0.1:
             increment = 0.01
             print("increasing")
 
 
-
-        publisher.publish(marker) #Cria um publicador
-
+        publisher.publish(marker_cube)
+        publisher.publish(marker_sphere) #Cria um publicador
         print('Publisher a new sphere')
-
+        
         rate.sleep()
 
 if __name__ == '__main__':
