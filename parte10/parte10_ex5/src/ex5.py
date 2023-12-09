@@ -30,7 +30,7 @@ def main():
     # -----------------------------------------------
     # Initialization 
     # -----------------------------------------------
-    capture = cv2.VideoCapture(4)
+    capture = cv2.VideoCapture(0)
     window_name = 'window'
     cv2.namedWindow(window_name,cv2.WINDOW_AUTOSIZE)
 

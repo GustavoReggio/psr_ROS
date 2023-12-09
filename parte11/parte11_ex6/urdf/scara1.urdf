@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+
+<robot name="scara">
+    <material name="yellow">
+        <color rgba="1 1 0 1"/>
+    </material>
+
+    <link name="base_link">
+        <visual>
+            <geometry>
+                <cylinder radius="0.6" length="0.2"/>
+            </geometry>
+            <material name="yellow"/>
+        </visual>
+    </link>
+    
+</robot>

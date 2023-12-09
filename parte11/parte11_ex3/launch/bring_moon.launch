@@ -1,0 +1,41 @@
+<?xml version="1.0"?>
+<launch>
+
+  <node name="Terra" pkg="parte11_ex3" type="circular_frame.py" respawn="false" output="screen" >
+    <param name="~radius" type="double" value="1.0" />
+    <param name="~angular_speed" type="double" value="0.1" />
+    <remap from="parent" to="Sol"/>
+    <remap from="child" to="Terra"/>
+  </node>
+    
+  <node name="Mercurio" pkg="parte11_ex3" type="circular_frame.py" respawn="false" output="screen" >
+    <param name="~radius" type="double" value="0.387" />
+    <param name="~angular_speed" type="double" value="0.0159" />
+    <remap from="parent" to="Sol"/>
+    <remap from="child" to="Mercurio"/>
+  </node>
+
+  <node name="Venus" pkg="parte11_ex3" type="circular_frame.py" respawn="false" output="screen" >
+    <param name="~radius" type="double" value="0.723" />
+    <param name="~angular_speed" type="double" value="0.0118" />
+    <remap from="parent" to="Sol"/>
+    <remap from="child" to="Venus"/>
+  </node>
+
+  <node name="Marte" pkg="parte11_ex3" type="circular_frame.py" respawn="false" output="screen" >
+    <param name="~radius" type="double" value="1.52" />
+    <param name="~angular_speed" type="double" value="0.00808" />
+    <remap from="parent" to="Sol"/>
+    <remap from="child" to="Marte"/>
+  </node>
+
+  <node name="Lua" pkg="parte11_ex3" type="circular_frame.py" respawn="false" output="screen" >
+    <param name="~radius" type="double" value="0.257" />
+    <param name="~angular_speed" type="double" value="0.0343" />
+    <remap from="parent" to="Terra"/>
+    <remap from="child" to="Lua"/>
+  </node>
+
+  <node pkg="mercury_to_moon.py" type="mercury_to_moon.py" name="listener" />
+
+  </launch>
