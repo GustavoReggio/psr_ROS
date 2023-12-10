@@ -1,17 +1,156 @@
 <?xml version="1.0"?>
 
 <robot name="scara">
+
+    <!-- material -->
+    <!-- material 1 -->
     <material name="yellow">
         <color rgba="1 1 0 1"/>
     </material>
+    <!-- material 2 -->
+    <material name="blue">
+        <color rgba="0 0 1 1"/>
+    </material>
+    <!-- material 3 -->
+    <material name="red">
+        <color rgba="1 0 0 1"/>
+    </material>
+    <!-- material 4 -->
+    <material name="green">
+        <color rgba="0 1 0 1"/>
+    </material>
 
+    <!-- link 1  -->
     <link name="base_link">
         <visual>
             <geometry>
-                <cylinder radius="0.6" length="0.2"/>
+                <cylinder radius="0.2" length="0.3"/>
             </geometry>
             <material name="yellow"/>
         </visual>
     </link>
+
+    <!-- junta 1-2 -->
+    <joint name="base_link_to_link_1" type="revolute">
+        <parent link="base_link" />
+        <child link="link_1" />
+        <origin xyz="0 0 0.3" rpy="0 0 0" />
+        <!-- eixo de rotação da junta -->
+        <axis xyz="0 0 1" />
+        <!-- barras moveis -->
+        <limit effort="1000.0" lower="-3.14" upper="3.14" velocity="0.5" />
+    </joint>
+
+    <!-- link 2 -->
+    <link name="link_1">
+        <visual>
+            <geometry>
+                <box size="1.5 0.4 0.3"/> 
+            </geometry>
+            <origin xyz="0.75 0 0" rpy="0 0 0"/>            
+            <material name="blue"/>
+        </visual>
+    </link>
+
+    <!-- junta 2-3 -->
+    <joint name="link_1_to_link_aux" type="fixed">
+        <parent link="link_1" />
+        <child link="link_1_auxiliar" />
+        <origin xyz="0 0 0" rpy="0 0 0" />
+    </joint>
     
+    <!-- link 3 -->
+    <link name="link_1_auxiliar">
+        <visual>
+            <geometry>
+                <cylinder radius="0.2" length="0.3"/> 
+            </geometry>
+            <origin xyz="0 0 0" rpy="0 0 0"/>            
+            <material name="blue"/>
+        </visual>
+    </link>
+
+    <!-- junta 2-4 -->
+    <joint name="link_2_to_4" type="revolute">
+        <parent link="link_1" />
+        <child link="link_2" />
+        <origin xyz="1.5 0 0" rpy="0 0 0" />
+        <!-- eixo de rotação da junta -->
+        <axis xyz="0 0 1" />
+        <!-- barras moveis -->
+        <limit effort="1000.0" lower="-1.57" upper="1.57" velocity="0.5" />
+    </joint>
+
+    <!-- link 4 -->
+    <link name="link_2">
+        <visual>
+            <geometry>
+                <box size="1.2 0.4 0.3"/> 
+            </geometry>
+            <origin xyz="0.6 0 0" rpy="0 0 0"/>            
+            <material name="red"/>
+        </visual>
+    </link>
+
+    <!-- junta 4-5 -->
+    <joint name="link_4_to_aux" type="fixed">
+        <parent link="link_2" />
+        <child link="link_2_aux" />
+        <origin xyz="0 0 0" rpy="0 0 0" />
+    </joint>
+
+    <!-- link 5 -->
+    <link name="link_2_aux">
+        <visual>
+            <geometry>
+                <cylinder radius="0.2" length="0.3"/>
+            </geometry>
+            <origin xyz="0 0 0" rpy="0 0 0"/>            
+            <material name="red"/>
+        </visual>
+    </link>
+
+    <!-- junta 4-6 -->
+    <joint name="link_4_to_6" type="prismatic">
+        <parent link="link_2" />
+        <child link="link_3" />
+        <!-- para ter o x na ponta da ferramenta, rotaciona-se o peatch -->
+        <origin xyz="1.2 0 0" rpy="0 -1.57 0" />
+        <!-- eixo de rotação da junta -->
+        <axis xyz="1 0 0" />
+        <!-- barras moveis -->
+        <limit effort="1000.0" lower="-0.4" upper="0.2" velocity="0.5" />
+    </joint>
+
+    <!-- link 6 -->
+    <link name="link_3">
+        <visual>
+            <geometry>
+                <cylinder radius="0.05" length="0.8"/> 
+            </geometry>
+            <!-- para ter o x na ponta da ferramenta, rotaciona-se o peatch -->
+            <origin xyz="0 0 0" rpy="0 1.57 0"/>            
+            <material name="green"/>
+        </visual>
+    </link>
+
+    <!-- junta 4-7 -->
+    <joint name="link_6_to_aux" type="fixed">
+        <parent link="link_2" />
+        <child link="link_3_aux" />
+        <origin xyz="1.2 0 0" rpy="0 0 0" />
+    </joint>
+
+    <!-- link 7 -->
+    <link name="link_3_aux">
+        <visual>
+            <geometry>
+                <cylinder radius="0.2" length="0.8"/> 
+            </geometry>
+            <origin xyz="0 0 0.3" rpy="0 0 0"/>            
+            <material name="green"/>
+        </visual>
+    </link>
+
+
 </robot>
