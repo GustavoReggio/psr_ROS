@@ -7,11 +7,14 @@ Panels:
         - /Global Options1
         - /Status1
         - /RGB-Image1
+        - /TF1
+        - /TF1/Frames1
         - /RobotModel1
         - /LaserScan1
         - /Axes1
         - /Image-back1
-      Splitter Ratio: 0.5
+        - /Map1
+      Splitter Ratio: 0.7774725556373596
     Tree Height: 581
   - Class: rviz/Selection
     Name: Selection
@@ -69,12 +72,50 @@ Visualization Manager:
       Unreliable: false
       Value: true
     - Class: rviz/TF
-      Enabled: false
+      Enabled: true
       Filter (blacklist): ""
       Filter (whitelist): ""
       Frame Timeout: 15
       Frames:
-        All Enabled: true
+        All Enabled: false
+        antena_link:
+          Value: false
+        base_footprint:
+          Value: false
+        base_link:
+          Value: false
+        base_scan:
+          Value: false
+        camera_link:
+          Value: true
+        camera_link_back:
+          Value: false
+        camera_rgb_frame:
+          Value: true
+        camera_rgb_frame_back:
+          Value: false
+        camera_rgb_optical_back:
+          Value: false
+        camera_rgb_optical_frame:
+          Value: true
+        caster_back_left_link:
+          Value: false
+        caster_back_right_link:
+          Value: false
+        castle_link:
+          Value: false
+        imu_link:
+          Value: false
+        map:
+          Value: true
+        mastro_link:
+          Value: false
+        odom:
+          Value: false
+        wheel_left_link:
+          Value: false
+        wheel_right_link:
+          Value: false
       Marker Alpha: 1
       Marker Scale: 0.30000001192092896
       Name: TF
@@ -82,9 +123,37 @@ Visualization Manager:
       Show Axes: true
       Show Names: false
       Tree:
-        {}
+        map:
+          odom:
+            base_footprint:
+              base_link:
+                base_scan:
+                  {}
+                camera_link:
+                  camera_rgb_frame:
+                    camera_rgb_optical_frame:
+                      {}
+                camera_link_back:
+                  camera_rgb_frame_back:
+                    camera_rgb_optical_back:
+                      {}
+                caster_back_left_link:
+                  {}
+                caster_back_right_link:
+                  {}
+                castle_link:
+                  {}
+                imu_link:
+                  {}
+                mastro_link:
+                  antena_link:
+                    {}
+                wheel_left_link:
+                  {}
+                wheel_right_link:
+                  {}
       Update Interval: 0
-      Value: false
+      Value: true
     - Alpha: 1
       Class: rviz/RobotModel
       Collision Enabled: false
@@ -229,6 +298,16 @@ Visualization Manager:
       Transport Hint: raw
       Unreliable: false
       Value: true
+    - Alpha: 0.699999988079071
+      Class: rviz/Map
+      Color Scheme: map
+      Draw Behind: false
+      Enabled: false
+      Name: Map
+      Topic: /map
+      Unreliable: false
+      Use Timestamp: false
+      Value: false
   Enabled: true
   Global Options:
     Background Color: 255; 255; 255
@@ -257,7 +336,7 @@ Visualization Manager:
   Views:
     Current:
       Class: rviz/Orbit
-      Distance: 0.3335031270980835
+      Distance: 10.915285110473633
       Enable Stereo Rendering:
         Stereo Eye Separation: 0.05999999865889549
         Stereo Focal Distance: 1
@@ -265,17 +344,17 @@ Visualization Manager:
         Value: false
       Field of View: 0.7853981852531433
       Focal Point:
-        X: -0.00668426463380456
-        Y: -0.2540755569934845
-        Z: 0.15277035534381866
+        X: 0.1118130013346672
+        Y: 0.07604067027568817
+        Z: 0.04436049610376358
       Focal Shape Fixed Size: true
       Focal Shape Size: 0.05000000074505806
       Invert Z Axis: false
       Name: Current View
       Near Clip Distance: 0.009999999776482582
-      Pitch: 0.07479745149612427
+      Pitch: 0.9147974848747253
       Target Frame: <Fixed Frame>
-      Yaw: 4.523571491241455
+      Yaw: 1.4353868961334229
     Saved: ~
 Window Geometry:
   Displays:

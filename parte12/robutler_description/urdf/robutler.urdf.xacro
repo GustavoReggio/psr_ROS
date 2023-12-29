@@ -218,14 +218,14 @@
 
   <!-- Camera traseira -->
   <joint name="camera_joint_back" type="fixed">
-    <origin xyz="0.073 -0.011 0.084" rpy="3.14 3.14 3.14"/>
+    <origin xyz="-0.173 -0.011 0.084" rpy="0 0 0"/>
     <parent link="base_link"/>
     <child link="camera_link_back"/>
   </joint>
 
   <link name="camera_link_back">
     <collision>
-      <origin xyz="0.005 0.011 0.013" rpy="3.14 3.14 3.14"/>
+      <origin xyz="-0.105 -0.011 0.013" rpy="0 0 0"/>
       <geometry>
         <box size="0.015 0.030 0.027"/>
       </geometry>
@@ -233,14 +233,14 @@
   </link>
 
   <joint name="camera_rgb_joint_back" type="fixed">
-    <origin xyz="0.003 0.011 0.009" rpy="3.14 3.14 3.14"/>
+    <origin xyz="-0.103 -0.011 0.009" rpy="0 0 3.14"/>
     <parent link="camera_link_back"/>
     <child link="camera_rgb_frame_back"/>
   </joint>
   <link name="camera_rgb_frame_back"/>
 
   <joint name="camera_rgb_optical_back" type="fixed">
-    <origin xyz="0 0 0" rpy="1.57 0 1.57"/>
+    <origin xyz="0 0 0" rpy="0 0 3.14"/>
     <parent link="camera_rgb_frame_back"/>
     <child link="camera_rgb_optical_back"/>
   </joint>

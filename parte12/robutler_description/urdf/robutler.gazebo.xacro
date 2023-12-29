@@ -198,7 +198,7 @@
               <far>100</far>
           </clip>
       </camera>
-      <plugin name="camera_controller" filename="libgazebo_ros_camera.so">
+      <plugin name="camera_controller_back" filename="libgazebo_ros_camera.so">
         <alwaysOn>true</alwaysOn>
         <updateRate>30.0</updateRate>
         <cameraName>camera</cameraName>
