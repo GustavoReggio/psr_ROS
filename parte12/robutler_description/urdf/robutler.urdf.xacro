@@ -1,7 +1,7 @@
 <?xml version="1.0" ?>
 <robot name="turtlebot3_waffle_pi" xmlns:xacro="http://ros.org/wiki/xacro">
-  <xacro:include filename="$(find robutler_description_23-24)/urdf/common_properties.xacro"/>
-  <xacro:include filename="$(find robutler_description_23-24)/urdf/robutler.gazebo.xacro"/>
+  <xacro:include filename="$(find robutler_description)/urdf/common_properties.xacro"/>
+  <xacro:include filename="$(find robutler_description)/urdf/robutler.gazebo.xacro"/>
 
   <link name="base_footprint"/>
 
@@ -17,7 +17,7 @@
       <geometry>
         <mesh filename="package://turtlebot3_description/meshes/bases/waffle_pi_base.stl" scale="0.001 0.001 0.001"/>
       </geometry>
-      <material name="green"/>
+      <material name="white"/>
     </visual>
 
     <collision>
@@ -154,6 +154,7 @@
 
   <link name="imu_link"/>
 
+      <!-- Scan -->
   <joint name="scan_joint" type="fixed">
     <parent link="base_link"/>
     <child link="base_scan"/>
@@ -166,7 +167,7 @@
       <geometry>
         <mesh filename="package://turtlebot3_description/meshes/sensors/lds.stl" scale="0.001 0.001 0.001"/>
       </geometry>
-      <material name="dark"/>
+      <material name="blue"/>
     </visual>
 
     <collision>
@@ -185,6 +186,7 @@
     </inertial>
   </link>
 
+        <!-- Camera frontal -->
   <joint name="camera_joint" type="fixed">
     <origin xyz="0.073 -0.011 0.084" rpy="0 0 0"/>
     <parent link="base_link"/>
@@ -214,8 +216,40 @@
   </joint>
   <link name="camera_rgb_optical_frame"/>
 
+  <!-- Camera traseira -->
+  <joint name="camera_joint_back" type="fixed">
+    <origin xyz="0.073 -0.011 0.084" rpy="3.14 3.14 3.14"/>
+    <parent link="base_link"/>
+    <child link="camera_link_back"/>
+  </joint>
 
-  <joint name="antena" type="fixed">
+  <link name="camera_link_back">
+    <collision>
+      <origin xyz="0.005 0.011 0.013" rpy="3.14 3.14 3.14"/>
+      <geometry>
+        <box size="0.015 0.030 0.027"/>
+      </geometry>
+    </collision>
+  </link>
+
+  <joint name="camera_rgb_joint_back" type="fixed">
+    <origin xyz="0.003 0.011 0.009" rpy="3.14 3.14 3.14"/>
+    <parent link="camera_link_back"/>
+    <child link="camera_rgb_frame_back"/>
+  </joint>
+  <link name="camera_rgb_frame_back"/>
+
+  <joint name="camera_rgb_optical_back" type="fixed">
+    <origin xyz="0 0 0" rpy="1.57 0 1.57"/>
+    <parent link="camera_rgb_frame_back"/>
+    <child link="camera_rgb_optical_back"/>
+  </joint>
+  <link name="camera_rgb_optical_back"/>
+
+
+  <!-- Estético adicional -->
+
+  <!-- <joint name="antena" type="fixed">
     <origin xyz="0 0 0" rpy="-1.57 0 -1.57"/>
     <parent link="camera_rgb_frame"/>
     <child link="antena_link"/>
@@ -228,7 +262,90 @@
     <parent link="camera_rgb_frame"/>
     <child link="camera_rgb_optical_frame"/>
   </joint>
-  <link name="camera_rgb_optical_frame"/>
+  <link name="camera_rgb_optical_frame"/> -->
 
+    <!-- Mastro -->
+  <joint name="mastro_joint" type="fixed">
+    <parent link="base_link"/>
+    <child link="mastro_link"/>
+    <origin xyz="0.023 0 0.1" rpy="0 0 0"/>
+  </joint>
+
+  <link name="mastro_link">
+    <visual>
+      <origin xyz="0 0 0.065" rpy="0 0 0"/>
+      <geometry>
+        <cylinder length="0.16" radius="0.0125" scale="0.001 0.001 0.001"/>
+      </geometry>
+      <material name="red"/>
+    </visual>
+
+    <collision>
+      <origin xyz="0.023 0 0.1" rpy="0 0 0"/>
+      <geometry>
+        <cylinder length="0.0315" radius="0.055"/>
+      </geometry>
+    </collision>
+
+    <inertial>
+      <mass value="0.114" />
+      <origin xyz="0 0 0" />
+      <inertia ixx="0.001" ixy="0.0" ixz="0.0"
+               iyy="0.001" iyz="0.0"
+               izz="0.001" />
+    </inertial>
+  </link>
+
+      <!-- Antena -->
+  <joint name="antena_joint" type="fixed">
+    <parent link="mastro_link"/>
+    <child link="antena_link"/>
+    <origin xyz="0.0 0 0.14" rpy="0 0 0"/>
+  </joint>
+
+  <link name="antena_link">
+    <visual>
+      <origin xyz="0 0 0.0" rpy="0 0 0"/>
+      <geometry>
+        <mesh filename="package://turtlebot3_description/meshes/new/Pirate_Flag.stl" scale="0.002 0.002 0.002"/>
+      </geometry>
+      <material name="red"/>
+    </visual>
+
+    <!-- <collision>
+      <origin xyz="0.015 0 -0.0065" rpy="0 0 0"/>
+      <geometry>
+        <cylinder length="0.0315" radius="0.055"/>
+      </geometry>
+    </collision>
+
+    <inertial>
+      <mass value="0.114" />
+      <origin xyz="0 0 0" />
+      <inertia ixx="0.001" ixy="0.0" ixz="0.0"
+               iyy="0.001" iyz="0.0"
+               izz="0.001" />
+    </inertial> -->
+  </link>
+
+    <!-- castelinho -->
+
+<joint name="castle_joint" type="fixed">
+    <parent link="base_link"/>
+    <child link="castle_link"/>
+    <origin xyz="-0.18 -0.04 0.0825" rpy="0 0 0"/>
+  </joint>
+
+  <link name="castle_link">
+    <visual>
+      <origin xyz="0 0 0.0" rpy="0 0 0"/>
+      <geometry>
+        <mesh filename="package://turtlebot3_description/meshes/new/flag_cap.stl" scale="0.002 0.002 0.002"/>
+      </geometry>
+      <material name="red"/>
+    </visual>
+
+ 
+  </link>
 
 </robot>

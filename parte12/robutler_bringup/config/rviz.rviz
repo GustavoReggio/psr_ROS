@@ -6,9 +6,13 @@ Panels:
       Expanded:
         - /Global Options1
         - /Status1
+        - /RGB-Image1
+        - /RobotModel1
         - /LaserScan1
+        - /Axes1
+        - /Image-back1
       Splitter Ratio: 0.5
-    Tree Height: 728
+    Tree Height: 581
   - Class: rviz/Selection
     Name: Selection
   - Class: rviz/Tool Properties
@@ -24,10 +28,9 @@ Panels:
     Name: Views
     Splitter Ratio: 0.5
   - Class: rviz/Time
-    Experimental: false
     Name: Time
     SyncMode: 0
-    SyncSource: RGB-Image
+    SyncSource: LaserScan
 Preferences:
   PromptSaveOnExit: true
 Toolbars:
@@ -66,34 +69,12 @@ Visualization Manager:
       Unreliable: false
       Value: true
     - Class: rviz/TF
-      Enabled: true
+      Enabled: false
+      Filter (blacklist): ""
+      Filter (whitelist): ""
       Frame Timeout: 15
       Frames:
         All Enabled: true
-        base_footprint:
-          Value: true
-        base_link:
-          Value: true
-        base_scan:
-          Value: true
-        camera_link:
-          Value: true
-        camera_rgb_frame:
-          Value: true
-        camera_rgb_optical_frame:
-          Value: true
-        caster_back_left_link:
-          Value: true
-        caster_back_right_link:
-          Value: true
-        imu_link:
-          Value: true
-        odom:
-          Value: true
-        wheel_left_link:
-          Value: true
-        wheel_right_link:
-          Value: true
       Marker Alpha: 1
       Marker Scale: 0.30000001192092896
       Name: TF
@@ -101,27 +82,9 @@ Visualization Manager:
       Show Axes: true
       Show Names: false
       Tree:
-        odom:
-          base_footprint:
-            base_link:
-              base_scan:
-                {}
-              camera_link:
-                camera_rgb_frame:
-                  camera_rgb_optical_frame:
-                    {}
-              caster_back_left_link:
-                {}
-              caster_back_right_link:
-                {}
-              imu_link:
-                {}
-              wheel_left_link:
-                {}
-              wheel_right_link:
-                {}
+        {}
       Update Interval: 0
-      Value: true
+      Value: false
     - Alpha: 1
       Class: rviz/RobotModel
       Collision Enabled: false
@@ -132,6 +95,11 @@ Visualization Manager:
         Expand Link Details: false
         Expand Tree: false
         Link Tree Style: Links in Alphabetic Order
+        antena_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
         base_footprint:
           Alpha: 1
           Show Axes: false
@@ -151,7 +119,20 @@ Visualization Manager:
           Show Axes: false
           Show Trail: false
           Value: true
+        camera_link_back:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
         camera_rgb_frame:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+        camera_rgb_frame_back:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+        camera_rgb_optical_back:
           Alpha: 1
           Show Axes: false
           Show Trail: false
@@ -169,10 +150,20 @@ Visualization Manager:
           Show Axes: false
           Show Trail: false
           Value: true
+        castle_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
         imu_link:
           Alpha: 1
           Show Axes: false
           Show Trail: false
+        mastro_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
         wheel_left_link:
           Alpha: 1
           Show Axes: false
@@ -217,6 +208,27 @@ Visualization Manager:
       Use Fixed Frame: true
       Use rainbow: true
       Value: true
+    - Alpha: 1
+      Class: rviz/Axes
+      Enabled: false
+      Length: 0.20999999344348907
+      Name: Axes
+      Radius: 0.003100000089034438
+      Reference Frame: castle_link
+      Show Trail: false
+      Value: false
+    - Class: rviz/Image
+      Enabled: true
+      Image Topic: /camera/rgb/image_raw_back
+      Max Value: 1
+      Median window: 5
+      Min Value: 0
+      Name: Image-back
+      Normalize Range: true
+      Queue Size: 2
+      Transport Hint: raw
+      Unreliable: false
+      Value: true
   Enabled: true
   Global Options:
     Background Color: 255; 255; 255
@@ -245,7 +257,7 @@ Visualization Manager:
   Views:
     Current:
       Class: rviz/Orbit
-      Distance: 1.265410304069519
+      Distance: 0.3335031270980835
       Enable Stereo Rendering:
         Stereo Eye Separation: 0.05999999865889549
         Stereo Focal Distance: 1
@@ -253,25 +265,27 @@ Visualization Manager:
         Value: false
       Field of View: 0.7853981852531433
       Focal Point:
-        X: -0.31420645117759705
-        Y: -0.47460392117500305
-        Z: 0.4027881324291229
+        X: -0.00668426463380456
+        Y: -0.2540755569934845
+        Z: 0.15277035534381866
       Focal Shape Fixed Size: true
       Focal Shape Size: 0.05000000074505806
       Invert Z Axis: false
       Name: Current View
       Near Clip Distance: 0.009999999776482582
-      Pitch: 0.4247974157333374
+      Pitch: 0.07479745149612427
       Target Frame: <Fixed Frame>
-      Yaw: 4.01357364654541
+      Yaw: 4.523571491241455
     Saved: ~
 Window Geometry:
   Displays:
     collapsed: false
-  Height: 1022
+  Height: 902
   Hide Left Dock: false
   Hide Right Dock: false
-  QMainWindow State: 000000ff00000000fd00000004000000000000015b00000362fc0200000008fb0000001200530065006c0065006300740069006f006e00000001e10000009b0000005c00fffffffb0000001e0054006f006f006c002000500072006f007000650072007400690065007302000001ed000001df00000185000000a3fb000000120056006900650077007300200054006f006f02000001df000002110000018500000122fb000000200054006f006f006c002000500072006f0070006500720074006900650073003203000002880000011d000002210000017afb000000100044006900730070006c006100790073010000003c00000362000000c800fffffffb0000002000730065006c0065006300740069006f006e00200062007500660066006500720200000138000000aa0000023a00000294fb00000014005700690064006500530074006500720065006f02000000e6000000d2000003ee0000030bfb0000000c004b0069006e0065006300740200000186000001060000030c00000261000000010000024f00000362fc0200000003fb0000001e0054006f006f006c002000500072006f00700065007200740069006500730100000041000000780000000000000000fc0000003c000003620000001600fffffffa000000000100000002fb00000012005200470042002d0049006d0061006700650100000000ffffffff0000007600fffffffb0000000a00560069006500770073000000040a0000010f0000010000fffffffb0000001200530065006c0065006300740069006f006e010000025a000000b200000000000000000000000200000490000000a9fc0100000001fb0000000a00560069006500770073030000004e00000080000002e10000019700000003000007800000003efc0100000002fb0000000800540069006d00650100000000000007800000029800fffffffb0000000800540069006d00650100000000000004500000000000000000000003ca0000036200000004000000040000000800000008fc0000000100000002000000010000000a0054006f006f006c00730100000000ffffffff0000000000000000
+  Image-back:
+    collapsed: false
+  QMainWindow State: 000000ff00000000fd00000004000000000000016e000002d0fc0200000008fb0000001200530065006c0065006300740069006f006e00000001e10000009b0000005c00fffffffb0000001e0054006f006f006c002000500072006f007000650072007400690065007302000001ed000001df00000185000000a3fb000000120056006900650077007300200054006f006f02000001df000002110000018500000122fb000000200054006f006f006c002000500072006f0070006500720074006900650073003203000002880000011d000002210000017afb000000100044006900730070006c006100790073010000003d000002d0000000c900fffffffb0000002000730065006c0065006300740069006f006e00200062007500660066006500720200000138000000aa0000023a00000294fb00000014005700690064006500530074006500720065006f02000000e6000000d2000003ee0000030bfb0000000c004b0069006e0065006300740200000186000001060000030c000002610000000100000220000002d0fc0200000005fb00000012005200470042002d0049006d006100670065010000003d000001590000001600fffffffb000000140049006d006100670065002d006200610063006b010000019c000001710000001600fffffffb0000001e0054006f006f006c002000500072006f00700065007200740069006500730100000041000000780000000000000000fb0000000a00560069006500770073000000003d000002e8000000a400fffffffb0000001200530065006c0065006300740069006f006e010000025a000000b200000000000000000000000200000738000000a9fc0100000001fb0000000a00560069006500770073030000004e00000080000002e100000197000000030000073800000056fc0100000002fb0000000800540069006d0065010000000000000738000003bc00fffffffb0000000800540069006d006501000000000000045000000000000000000000039e000002d000000004000000040000000800000008fc0000000100000002000000010000000a0054006f006f006c00730100000000ffffffff0000000000000000
   RGB-Image:
     collapsed: false
   Selection:
@@ -282,6 +296,6 @@ Window Geometry:
     collapsed: false
   Views:
     collapsed: false
-  Width: 1920
-  X: 0
-  Y: 30
+  Width: 1848
+  X: 72
+  Y: 27
